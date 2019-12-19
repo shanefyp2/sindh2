@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>DISTRICT</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+  
+<style>
+        body {
+            padding-right: 90px;
+            padding-left: 90px;
+            padding-top: 30px;
+            padding-bottom: 40px;      
+            background-image: url('/static/b2.jpg');
+            background-size: cover;
+        }
+
+
+        #logodiv {
+            width: 20%;
+            height: 50px;
+            float: left;
+            margin-top: 5px;
+            padding-left: 40px;
+            font-size: 2.5em;
+            padding-top: 2px;
+            text-shadow: blue 2px 5px 10px;
+        }
+
+        #navigationdiv {
+            width: 68%;
+            height: 50px;
+            float: right;
+            font-size: 1em;
+            margin-top: 2px;
+            padding-top: 5px;
+            padding-right: 30px;
+            padding-bottom: 10px;
+            text-shadow: black 2px 5px 10px;
+        }
+
+        nav {
+            text-shadow: white 2px 5px 10px;
+        }
+
+        li {
+            display: inline;
+            margin-left: 20px;
+            margin-right: 20px;
+            font-size: 1.6em;
+            text-align: left;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        h3 {
+            font-size: 2em;
+        }
+
+        #maindiv2-heading {
+            padding-left:40px;
+            text-align:left;
+            border-bottom: solid;
+            color:black;
+        }
+
+        #footerdiv {
+            width: 100%;
+            height: 6px;
+            margin-top: 80px;
+            float: left;
+            background-color: limegreen;
+        }
+
+        #footerline1 {
+            width: 25%;
+            height: 43px;
+            padding-top: 2px;
+            padding-left: 30px;
+            margin: 0 auto;
+            margin-top: 950px;
+            font-size: 1.2em;
+            line-height: 35px;
+            text-align:center;
+        }
+
+
+
+        #maindiv {
+            width: 66%;
+            height: 750px;
+            margin-top: 25px;
+            margin-right: 30px;
+            margin-bottom: 10px;
+            box-shadow: black 2px 4px 10px;
+            padding-top: 5px;
+            float: left;
+            padding-left: 40px;
+            padding-right: 40px;
+            border-style: groove;
+            border-width: 5px;
+            border-color: floralwhite;
+            border-radius: 30px;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        #maindiv2 {
+            width: 21%;
+            height: 350px;
+            float: right;
+            margin-right: 8px;
+            text-align: left;
+            margin-top: 25px;
+            border-style: groove;
+            border-width: 5px;
+            border-color: floralwhite;
+            box-shadow: black 2px 4px 10px;
+            border-radius: 30px;
+            padding-left: 0px;
+        }
+
+        .w1 {
+            font-size: 1.7em;
+            line-height: 30px;
+            border-bottom: solid;
+            padding-left: 60px;
+        }
+
+        h1 {
+            color: navy;
+            text-align:center;
+        }
+
+        .a {
+            color: blue;
+        }
+
+        h2 {
+            color: navy;
+        }
+
+        b {
+            color: navy;
+        }
+        #link {
+            text-decoration: underline;
+            font-size: 1.2em;
+        }
+        b{
+            font-size:1.2em;
+        }
+       
+    </style>
+
+  
+
+</head>
+
+<body>
+
+
+        <div id="logodiv">
+            <img src="/static/logo.png" alt="section" width="70%" height="55px">
+            
+        </div>
+        <div id="navigationdiv">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="http://eoneit.com/fyp2/index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://eoneit.com/fyp2/predictnow.html">Predict Now </a>
+                    </li>
+                    <li>
+                        <a href="http://eoneit.com/fyp2/algorithm.html">Algorithm</a>
+                    </li>
+                    <li>
+                        <a href="http://eoneit.com/fyp2/archieves.html">Archieves</a>
+                    </li>
+                    <li>
+                        <a href="http://eoneit.com/fyp2/about.html">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="maindiv">
+            
+            <h2 align="center">PREDICT SINDH'S DISTRICTS POPULATION</h2>
+
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="Year" placeholder="Year" required="required" maxlength="4"
+         onblur="yearValidation(this.value,event)" 
+         onkeypress="yearValidation(this.value,event)" />
+         
+        <input type="text" name="District" placeholder="District" required="required" maxlength="4"
+         onblur="yValidation(this.value,event)" 
+         onkeypress="yValidation(this.value,event)" />
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script type="text/javascript">
+function yearValidation(year,ev) {
+  var text = /^[0-9]+$/;
+  if(ev.type=="blur" || year.length==4 && ev.keyCode!=8 && ev.keyCode!=46) {
+    if (year != 0) {
+        if ((year != "") && (!text.test(year))) {
+
+            alert("Please Enter Numeric Values Only");
+            return false;
+        }
+        if (year <1951){
+            alert("Year begins from 1951. As first census conducted in 1951.")
+            return false;
+        }
+        return true;
+    } }
+}
+
+
+function yValidation(y,e) {
+  var text = /^[0-9]+$/; 
+  if(e.type=="blur" || y.length==4 && ev.keyCode!=8 && e.keyCode!=46) {
+    if (y != 0) {
+        if ((y != "") && (!text.test(y))) {
+            alert("Please Enter Numeric Values Only");
+            return false;
+        }
+        if ((y != 110)&&(y != 210)&&(y != 310)&&(y != 410)&&(y != 510)&&(y != 610)&&(y != 710)&&(y != 810)&&(y != 910)&&(y != 1010)&&(y != 1110)&&(y != 1210)&&(y != 1310)&&(y != 1410)&&(y != 1510)&&(y != 1610)&&(y != 1710)&&(y != 1810)&&(y != 1910)&&(y != 2010)&&(y != 210)&&(y != 2110)){
+            alert("Incorrect Code Number. Please check.")
+            return false;
+        }
+        return true;
+    } }
+}
+</script>
+        
+   <br>
+   <br>
+   <strong>{{ prediction_text }}</strong>
+    <br>
+    <br>
+        <h5>Note: Please enter the desired Code Number in the field of District</h5>
+
+<table style="width:100%">
+  <tr>
+    <td>110 for Dadu</td>
+    <td>810 for Karachi Central</td>
+    <td>1510 for Sanghar</td>              
+  </tr>
+  <tr>
+    <td>210 for Hyderabad</td>
+    <td>910 for Malir</td>
+     <td>1610 for Umerkot</td>
+  </tr>
+  <tr>
+    <td>310 for Badin</td>
+    <td>1010 for Shikarpur</td>
+    <td>1710 for Khairpur</td>
+  </tr>
+  <tr>
+    <td>410 for Thatta</td>
+    <td>1110 for Jacobabad</td>
+    <td>1810 for Ghotki</td>
+  </tr>
+  <tr>
+    <td>510 for Karachi East</td>
+    <td>1210 for Larkana</td>
+    <td>1910 for Sukkur</td>
+  </tr>
+  <tr>
+    <td>610 for Karachi West</td>
+    <td>1310 for Mirpurkhas</td>
+    <td>2010 for Naushahro Feroz</td>
+  </tr>
+  <tr>
+    <td>710 for Karachi South</td>
+    <td>1410 for Tharparkar</td>
+    <td>2110 for Nawab Shah
+</td>
+  </tr>
+</table>
+        
+    
+    
+    
+    <br>
+    <center>
+              <img border="0" alt="Predict" src="/static/Predict.png" width="100%" height="100%">
+              
+    </center>
+         
+    <br>
+    <text>Sindh is one of the four provinces of Pakistan. It has districts, where each district is further divided into tehsils. Karachi, the capital of Sindh, is the most populous city district, as well as the most densely populated. It was initially a single district, now being further subdivided into East, West, South, Central, Malir and Korangi districts. Sindhi is the native language, and is widely spoken among the local population, alongside Seraiki, Balochi and Thari. The urban districts of Sindh are diverse in terms of religion and ethnicity. Urdu, Punjabi and Pashto are also widely spoken among migrant communities residing in urban areas. </text>
+
+ </div>
+          
+        </div>
+    </div>
+    <div id="maindiv2">
+        <p id="w2"><h1 id="maindiv2-heading">Predict Now</h1></p>
+
+        <p class="w1"> <a class="a" href="http://eoneit.com/fyp2/pakistan.html"><b> Pakistan</b></a></p>
+
+        <p class="w1"> <a class="a" href="http://eoneit.com/fyp2/province.html"><b>Province</b></a></p>
+
+        <p class="w1"> <a class="a" href="http://eoneit.com/fyp2/city.html"><b>City</b></a></p>
+
+        <p class="w1"> <a class="a" href="http://eoneit.com/fyp2/district.html"><b>District</b></a></p>
+
+
+    </div>
+
+    <div id="footerdiv">
+    </div>
+
+    <p id="footerline1"> DISCLAIMER  </p>
+    <text>
+    Advance Census System, does not provide personal or financial advice to individuals or act as an advisor to individuals or government officials.
+    All predictions strategies include the risk of loss for some. Before persuing any population prediction strategies discussed on this website you should always consult with licensed government officials.
+    <text/>
+    
+</body>
+</html>
